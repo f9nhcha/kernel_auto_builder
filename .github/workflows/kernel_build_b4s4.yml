@@ -14,10 +14,13 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+
+      - name: 📂 Checkout builder's sourcecode and get files
+        uses: actions/checkout@v4
+
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
           git clone https://github.com/Evolution-X-Devices/kernel_google_b4s4 -b vic
-          cd kernel_google_b4s4
         
       - name: 📅 Export date of build
         run: |
@@ -25,11 +28,13 @@ jobs:
 
       - name: 🔄 Update KernelSU-Next
         run: |
+          cd kernel_google_b4s4
           rm -rf KernelSU-Next
           git clone https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.5
 
       - name: 📥 Clone AnyKernel3
         run: |
+          cd kernel_google_b4s4
           git clone -b b4s4 https://github.com/Oneloutre/AnyKernel3.git anykernel
           rm -rf anykernel/.git
 
@@ -81,6 +86,7 @@ jobs:
 
       - name: 🔍 Device's codename and kernel's version
         run: |
+          cd kernel_google_b4s4
           DEVICE_CODENAME=sargo-bonito
           KERNEL_VERSION=$(make kernelversion)
 
@@ -97,6 +103,7 @@ jobs:
 
       - name: 🛠️ Build the kramel
         run: |
+          cd kernel_google_b4s4
           export ARCH=arm64
           export SUBARCH=arm64
           export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
@@ -118,12 +125,13 @@ jobs:
 
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
+          cd kernel_google_b4s4
           ZIP_NAME="Kernel-Caelum-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
           cp out/arch/arm64/boot/Image.lz4-dtb anykernel/
 
           cd anykernel && zip -r9 $ZIP_NAME ./*
-          mv $ZIP_NAME ../
+          mv $ZIP_NAME ../../
 
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
 
