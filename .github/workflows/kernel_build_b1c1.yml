@@ -109,7 +109,7 @@ jobs:
           export CCACHE_EXEC=$(which ccache)
           export KBUILD_BUILD_HOST="Caelum-Github-actions-Onelots"
 
-          make O=out ARCH=arm64 b1c1_defconfig kernelsu.config V=1
+          make O=out ARCH=arm64 b1c1_defconfig vendor/kernelsu.config V=1
           make O=out ARCH=arm64 olddefconfig
           make -j$(nproc --all) O=out \
           ARCH=arm64 \
