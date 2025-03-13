@@ -17,7 +17,6 @@ jobs:
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
           git clone https://github.com/Evolution-X-Devices/kernel_google_b1c1/ -b vic
-          cd kernel_google_b1c1
 
       - name: 📅 Export date of build
         run: |
@@ -25,11 +24,13 @@ jobs:
 
       - name: 🔄 Update KernelSU-Next
         run: |
+          cd kernel_google_b1c1
           rm -rf KernelSU-Next
           git clone https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.5
 
       - name: 📥 Clone AnyKernel3
         run: |
+          cd kernel_google_b1c1
           git clone -b b1c1 https://github.com/Oneloutre/AnyKernel3.git anykernel
           rm -rf anykernel/.git
 
@@ -81,6 +82,7 @@ jobs:
 
       - name: 🔍 Device's codename and kernel's version
         run: |
+          cd kernel_google_b1c1
           DEVICE_CODENAME=blueline-crosshatch
           KERNEL_VERSION=$(make kernelversion)
 
@@ -97,6 +99,7 @@ jobs:
 
       - name: 🛠️ Build the kramel
         run: |
+          cd kernel_google_b1c1
           export ARCH=arm64
           export SUBARCH=arm64
           export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
@@ -116,6 +119,7 @@ jobs:
 
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
+          cd kernel_google_b1c1
           ZIP_NAME="Kernel-Caelum-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
           cp out/arch/arm64/boot/Image.lz4-dtb anykernel/
