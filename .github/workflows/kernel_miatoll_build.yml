@@ -28,13 +28,13 @@ jobs:
       
       - name: 🐍 Install Python's dependencies
         run: |
-          python3 -m pip install -r .github/requirements.txt
+          python3 -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org requests
 
       - name: 🔄 Update KernelSU-Next
         run: |
           cd kernel_xiaomi_sm6250
           rm -rf KernelSU-Next
-          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.5
+          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
 
       - name: 📥 Clone AnyKernel3
         run: |
