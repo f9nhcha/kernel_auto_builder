@@ -5,9 +5,10 @@ Latest device released : ![GitHub Releases](https://img.shields.io/github/v/rele
 [![Github All Releases](https://img.shields.io/github/downloads/Oneloutre/kernel_auto_builder/total.svg)]()
 
 
+![Kramel kernel](kramel.jpg)
 
 ## 🌟 Overview
-This repository automates kernel compilation using **GitHub Actions**. The built kernel is published to **GitHub Releases**, and a **Discord notification** is sent upon completion.  
+This repository automates Caelum kernel's compilation using **GitHub Actions**. The built kernel is published to **GitHub Releases**, and a **Discord notification** is sent upon completion.  
 this repo WILL NOT patch the kernel with KernelSU-Next for you
 
 ## ✨ Features
