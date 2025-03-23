@@ -97,23 +97,7 @@ jobs:
 
       - name: 🛠️ Build Polaris's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
-
+          ./build.sh polaris
       - name: 🚀 Copy Polaris's kernel to AnyKernel3 then create the zip
         run: |
           cd kernel_xiaomi_sdm845
@@ -158,22 +142,7 @@ jobs:
 
       - name: 🛠️ Build Beryllium's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
+          ./build.sh beryllium
 
       - name: 🚀 Copy Beryllium's kernel to AnyKernel3 then create the zip
         run: |
@@ -218,22 +187,7 @@ jobs:
 
       - name: 🛠️ Build Dipper's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
+          ./build.sh dipper
 
       - name: 🚀 Copy Dipper's kernel to AnyKernel3 then create the zip
         run: |
@@ -278,22 +232,7 @@ jobs:
 
       - name: 🛠️ Build Perseus's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
+          ./build.sh perseus
 
       - name: 🚀 Copy Perseus's kernel to AnyKernel3 then create the zip
         run: |
@@ -339,22 +278,7 @@ jobs:
 
       - name: 🛠️ Build Ursa's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
+          ./build.sh ursa
 
       - name: 🚀 Copy Ursa's kernel to AnyKernel3 then create the zip
         run: |
@@ -400,22 +324,7 @@ jobs:
 
       - name: 🛠️ Build Equuleus's kramel
         run: |
-          cd kernel_xiaomi_sdm845
-          export ARCH=arm64
-          export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
-          export CCACHE_EXEC=$(which ccache)
-          export KBUILD_BUILD_HOST="Hayasaka-Github-actions-Onelots"
-
-          make O=out ARCH=arm64 vendor/xiaomi/mi845_defconfig vendor/debugfs.config vendor/kernelsu.config vendor/xiaomi/${DEVICE_CODENAME}.config V=1
-          make O=out ARCH=arm64 olddefconfig
-          make -j$(nproc --all) O=out -j"$(nproc --all)" \
-          ARCH=arm64 \
-          CC="ccache clang" \
-          LLVM=1 \
-          LLVM_IAS=1 \
-          CLANG_TRIPLE=aarch64-linux-gnu- \
-          CROSS_COMPILE=aarch64-linux-android- \
-          CROSS_COMPILE_ARM32=arm-linux-androideabi-
+          ./build.sh equuleus
 
       - name: 🚀 Copy Equuleus's kernel to AnyKernel3 then create the zip
         run: |
