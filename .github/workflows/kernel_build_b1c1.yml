@@ -20,7 +20,7 @@ jobs:
 
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
-          git clone https://github.com/Evolution-X-Devices/kernel_google_b1c1/ -b vic
+          git clone --depth=1 https://github.com/Evolution-X-Devices/kernel_google_b1c1/ -b vic
 
       - name: 📅 Export date of build
         run: |
@@ -30,12 +30,12 @@ jobs:
         run: |
           cd kernel_google_b1c1
           rm -rf KernelSU-Next
-          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.5
+          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
 
       - name: 📥 Clone AnyKernel3
         run: |
           cd kernel_google_b1c1
-          git clone -b b1c1 https://github.com/Oneloutre/AnyKernel3.git anykernel
+          git clone --depth=1 -b b1c1 https://github.com/Oneloutre/AnyKernel3.git anykernel
           rm -rf anykernel/.git
 
       - name: 🛠 Use repo's mkdtimg

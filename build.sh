@@ -10,7 +10,7 @@
      exit 1
  fi
  
-cd kernel_google_b4s4
+cd kernel_google_b1c1
  
  # Export required variables
 export ARCH=arm64
