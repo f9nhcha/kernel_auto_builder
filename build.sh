@@ -10,7 +10,7 @@ if [ -z "$DEVICE_CODENAME" ]; then
     exit 1
 fi
 
-cd kernel_xiaomi_sm6250
+cd kernel_oneplus_sm8150
 
 # Export required variables
 export ARCH=arm64
@@ -19,11 +19,10 @@ export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
 export CCACHE_EXEC=$(which ccache)
 export KBUILD_BUILD_HOST="Caelum-Github-actions-Onelots"
 export LLVM_IAS=1
-export CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+echo "CONFIG_BUILD_ARM64_DT_OVERLAY=y" >> lineage_sm8150_defconfig
 
 # Configure kernel     
-echo "CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y" >> arch/arm64/configs/vendor/xiaomi/miatoll_defconfig
-make O=out ARCH=arm64 vendor/xiaomi/miatoll_defconfig vendor/kernelsu.config
+make O=out ARCH=arm64 lineage_sm8150_defconfig vendor/kernelsu.config
 yes "" | make O=out ARCH=arm64 olddefconfig
 
 # Build kernel
