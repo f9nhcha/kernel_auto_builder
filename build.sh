@@ -23,6 +23,7 @@ echo "CONFIG_BUILD_ARM64_DT_OVERLAY=y" >> lineage_sm8150_defconfig
 
 # Configure kernel     
 make O=out ARCH=arm64 lineage_sm8150_defconfig vendor/kernelsu.config
+./script/config -e CONFIG_WIL6210 -e CONFIG_MSM_RDBG -e CONFIG_DVB_MPQ -e CONFIG_DVB_MPQ_DEMUX -e CONFIG_TSPP -e CONFIG_MMC_TEST -e CONFIG_QCA_CLD_WLAN -e CONFIG_MSM_11AD -e CONFIG_QCOM_LLCC_PERFMON
 yes "" | make O=out ARCH=arm64 olddefconfig
 
 # Build kernel
