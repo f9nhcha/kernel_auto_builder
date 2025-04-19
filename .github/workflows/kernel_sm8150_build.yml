@@ -29,8 +29,7 @@ jobs:
       - name: 🔄 Update KernelSU-Next
         run: |
           cd kernel_oneplus_sm8150
-          rm -rf KernelSU-Next
-          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
+          git submodule init && git submodule update
 
       - name: 📥 Clone AnyKernel3
         run: |
