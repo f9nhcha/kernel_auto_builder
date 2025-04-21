@@ -23,8 +23,6 @@ echo "CONFIG_BUILD_ARM64_DT_OVERLAY=y" >> lineage_sm8150_defconfig
 
 # Configure kernel     
 make O=out ARCH=arm64 lineage_sm8150_defconfig vendor/kernelsu.config
-./script/config -e WIL6210 -e MSM_RDBG -e DVB_MPQ -e DVB_MPQ_DEMUX -e TSPP -e MMC_TEST -e QCA_CLD_WLAN -e MSM_11AD -e QCOM_LLCC_PERFMON
-./script/config --set-str LOCALVERSION "-✨Caelum-OnePlus-7-gfe5c460c3c4c-dirty"
 yes "" | make O=out ARCH=arm64 olddefconfig
 
 # Build kernel
