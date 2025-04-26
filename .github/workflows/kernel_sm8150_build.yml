@@ -30,7 +30,7 @@ jobs:
         run: |
           cd kernel_oneplus_sm8150
           rm -rf KernelSU-Next
-          git clone https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
+          git clone https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.6
 
 
       - name: 📥 Clone AnyKernel3
@@ -75,7 +75,7 @@ jobs:
       - name: 🤌 Copy zip file to get 2 different zip files
         run: |
 
-          ZIP_ALTERNATIVE="KernelSU-Next-SUSFS-Caelum-${DEVICE_CODENAME}-latest.zip"
+          ZIP_ALTERNATIVE="KernelSU-Next-Caelum-${DEVICE_CODENAME}-latest.zip"
           cp ${ZIP_NAME} $ZIP_ALTERNATIVE
 
           echo "Copied ${ZIP_NAME} as $ZIP_ALTERNATIVE"
