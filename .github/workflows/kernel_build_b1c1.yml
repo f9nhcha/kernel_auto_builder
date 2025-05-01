@@ -88,7 +88,7 @@ jobs:
         run: |
           cd kernel_xiaomi_msm8953
           DEVICE_CODENAME=vince
-          KERNEL_VERSION=$(make kernelversion)
+          KERNEL_VERSION=$(make kernelversion | grep -E '^[0-9]+\.[0-9]+\.[0-9]+')
 
           echo "Device Codename: $DEVICE_CODENAME"
           echo "Kernel Version: $KERNEL_VERSION"
