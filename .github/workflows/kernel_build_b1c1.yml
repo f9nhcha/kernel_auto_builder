@@ -1,12 +1,12 @@
-name: Build KernelSU-Next for B1C1 (Blueline/Crosshatch)
+name: Build KernelSU-Next for Vince
 
 on:
   push:
     branches:
-      - b1c1
+      - vince
   pull_request:
     branches:
-      - b1c1
+      - vince
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
 
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
-          git clone --depth=1 https://github.com/Evolution-X-Devices/kernel_google_b1c1/ -b vic
+          git clone --depth=1 https://github.com/Evolution-X-Devices/kernel_xiaomi_msm8953/ -b vic
 
       - name: 📅 Export date of build
         run: |
@@ -27,15 +27,15 @@ jobs:
 
       - name: 🔄 Update KernelSU-Next
         run: |
-          cd kernel_google_b1c1
+          cd kernel_xiaomi_msm8953
           rm -rf KernelSU-Next
           git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
 
 
       - name: 📥 Clone AnyKernel3
         run: |
-          cd kernel_google_b1c1
-          git clone --depth=1 -b b1c1 https://github.com/Oneloutre/AnyKernel3.git anykernel
+          cd kernel_xiaomi_msm8953
+          git clone --depth=1 -b vince https://github.com/Oneloutre/AnyKernel3.git anykernel
           rm -rf anykernel/.git
 
       - name: 📦 Install dépendencies
@@ -86,8 +86,8 @@ jobs:
 
       - name: 🔍 Device's codename and kernel's version
         run: |
-          cd kernel_google_b1c1
-          DEVICE_CODENAME=blueline-crosshatch
+          cd kernel_xiaomi_msm8953
+          DEVICE_CODENAME=vince
           KERNEL_VERSION=$(make kernelversion)
 
           echo "Device Codename: $DEVICE_CODENAME"
@@ -103,14 +103,14 @@ jobs:
 
       - name: 🛠️ Build the kramel
         run: |
-          cd kernel_google_b1c1
+          cd kernel_xiaomi_msm8953
           export ARCH=arm64
           export SUBARCH=arm64
           export KBUILD_COMPILER_STRING=$(clang --version | head -n 1)
           export CCACHE_EXEC=$(which ccache)
           export KBUILD_BUILD_HOST="Caelum-Github-actions-Onelots"
 
-          make O=out ARCH=arm64 b1c1_defconfig vendor/kernelsu.config V=1
+          make O=out ARCH=arm64 vendor/vince_defconfig vendor/kernelsu.config V=1
           make O=out ARCH=arm64 olddefconfig
           make -j$(nproc --all) O=out \
           ARCH=arm64 \
@@ -123,10 +123,10 @@ jobs:
 
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
-          cd kernel_google_b1c1
+          cd kernel_xiaomi_msm8953
           ZIP_NAME="Kernel-Caelum-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
-          cp out/arch/arm64/boot/Image.lz4-dtb anykernel/
+          cp out/arch/arm64/boot/Image.gz-dtb anykernel/
 
           cd anykernel && zip -r9 $ZIP_NAME ./*
           mv $ZIP_NAME ../../
