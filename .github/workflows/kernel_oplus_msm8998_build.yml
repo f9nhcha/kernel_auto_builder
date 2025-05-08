@@ -1,12 +1,12 @@
-name: Build KernelSU-Next for MiAtoll
+name: Build KernelSU-Next OnePlus msm8998
 
 on:
   push:
     branches:
-      - miatoll
+      - oplus-msm8998
   pull_request:
     branches:
-      - miatoll
+      - oplus-msm8998
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
  
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
-          git clone --depth=1 https://github.com/Onelots-Devices-Playground/kernel_xiaomi_sm6250/ kernel_xiaomi_sm6250 -b vic
+          git clone --depth=1 https://github.com/Evolution-x-devices/kernel_oneplus_msm8998 kernel_oneplus_msm8998 -b vic
 
       - name: 📅 Export date of build
         run: |
@@ -28,20 +28,20 @@ jobs:
    
       - name: 🔄 Update KernelSU-Next
         run: |
-          cd kernel_xiaomi_sm6250
+          cd kernel_oneplus_msm8998
           rm -rf KernelSU-Next
           git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
 
       - name: 📥 Clone AnyKernel3
         run: |
-          cd kernel_xiaomi_sm6250
-          git clone -b miatoll --depth=1 https://github.com/Oneloutre/AnyKernel3.git anykernel
+          cd kernel_oneplus_msm8998
+          git clone -b oneplus-5 --depth=1 https://github.com/Oneloutre/AnyKernel3.git anykernel
           rm -rf anykernel/.git
 
       - name: 🔍 Device's codename and kernel's version
         run: |
-          cd kernel_xiaomi_sm6250
-          DEVICE_CODENAME=miatoll
+          cd kernel_oneplus_msm8998
+          DEVICE_CODENAME=oneplus-5
           KERNEL_VERSION=$(make kernelversion)
 
           echo "Device Codename: $DEVICE_CODENAME"
@@ -57,18 +57,14 @@ jobs:
 
       - name: 🛠️ Build the kramel
         run: |
-          ./build.sh miatoll
+          ./build.sh oneplus-5
 
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
-          cd kernel_xiaomi_sm6250
+          cd kernel_oneplus_msm8998
           ZIP_NAME="Kernel-Caelum-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
-          mkdir anykernel/dtb
-
-          cp out/arch/arm64/boot/Image.gz anykernel/
-          cp out/arch/arm64/boot/dtbo.img anykernel/
-          cp out/arch/arm64/boot/dtb.img anykernel/dtb
+          cp out/arch/arm64/boot/Image.gz-dtb anykernel/
 
           cd anykernel && zip -r9 $ZIP_NAME ./*
           mv $ZIP_NAME ../../
@@ -110,9 +106,9 @@ jobs:
 
       - name: 🚀 Notify people on Discord
         env:
-          DEVICE_CODENAME: miatoll
-          KERNEL_VERSION: 4.14.336
+          DEVICE_CODENAME: OnePlus 5
+          KERNEL_VERSION: 4.4
           WEBHOOK: ${{ secrets.WEBHOOK }}
-          NAME: Kernel-Caelum-miatoll-4.14.336.zip
+          NAME: Kernel-Caelum-OnePlus-5-4.4.zip
         run: |
           python3 .github/webhook.py

@@ -10,7 +10,7 @@ if [ -z "$DEVICE_CODENAME" ]; then
     exit 1
 fi
 
-cd kernel_xiaomi_sm6250
+cd kernel_oneplus_msm8998
 
 # Export required variables
 export ARCH=arm64
@@ -22,8 +22,8 @@ export LLVM_IAS=1
 export CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
 
 # Configure kernel     
-echo "CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y" >> arch/arm64/configs/vendor/xiaomi/miatoll_defconfig
-make O=out ARCH=arm64 vendor/xiaomi/miatoll_defconfig vendor/kernelsu.config
+echo "CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y" >> arch/arm64/configs/lineage_oneplus5_defconfig
+make O=out ARCH=arm64 lineage_oneplus5_defconfig vendor/kernelsu.config
 yes "" | make O=out ARCH=arm64 olddefconfig
 
 # Build kernel
