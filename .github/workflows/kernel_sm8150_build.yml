@@ -58,9 +58,9 @@ jobs:
           cd kernel_xiaomi_veux
           ZIP_NAME="Kernel-Paimon-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
-          cp out/arch/arm64/boot/Image-dtb anykernel/
+          cp out/arch/arm64/boot/Image Anykernel/
 
-          cd anykernel && zip -r9 $ZIP_NAME ./*
+          cd Anykernel && zip -r9 $ZIP_NAME ./*
           mv $ZIP_NAME ../../
 
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
