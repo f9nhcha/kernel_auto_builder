@@ -53,6 +53,10 @@ jobs:
         run: |
           ./build.sh Veux
 
+      - name: Define Anykernel3 properly
+        run: |
+          mv Anykernel3 Anykernel
+
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
           cd kernel_xiaomi_veux
