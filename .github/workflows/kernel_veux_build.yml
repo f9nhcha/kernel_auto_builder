@@ -91,7 +91,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.ZIP_NAME }}
-          tag_name: Kernel-Paimonk-${{ env.DEVICE_CODENAME }}-${{ env.KERNEL_VERSION }}-${{ env.DATE }}
+          tag_name: Kernel-Paimon-${{ env.DEVICE_CODENAME }}-${{ env.KERNEL_VERSION }}-${{ env.DATE }}
           draft: false
           prerelease: false
 
