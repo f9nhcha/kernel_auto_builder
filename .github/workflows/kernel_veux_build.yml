@@ -20,17 +20,11 @@ jobs:
  
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
-          git clone --depth=1 https://github.com/Evolution-X-Devices/kernel_xiaomi_veux kernel_xiaomi_veux -b vic
+          git clone --depth=1 https://github.com/PaimonLab/kernel_xiaomi_veux/ kernel_xiaomi_veux -b 15-KSU
 
       - name: 📅 Export date of build
         run: |
           echo "DATE=$(date +%d%m%Y)" >> $GITHUB_ENV
-   
-      - name: 🔄 Update KernelSU-Next
-        run: |
-          cd kernel_xiaomi_veux
-          rm -rf KernelSU-Next
-          git clone https://github.com/KernelSU-Next/KernelSU-Next -b v1.0.7
 
       - name: 🔍 Device's codename and kernel's version
         run: |
