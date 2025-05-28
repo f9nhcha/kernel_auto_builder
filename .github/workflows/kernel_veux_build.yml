@@ -55,7 +55,8 @@ jobs:
 
       - name: Define Anykernel3 properly
         run: |
-          mv Anykernel3 Anykernel
+          cd kernel_xiaomi_veux
+          mv AnyKernel3 Anykernel
 
       - name: 🚀 Copy the compiled kernel to AnyKernel3 then create the zip
         run: |
