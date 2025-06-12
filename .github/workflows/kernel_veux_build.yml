@@ -1,4 +1,4 @@
-name: Build KernelSU-Next for OnePlus-7-Serie
+name: Build KernelSU-Next for Redmi Note 11 Pro 5G (Veux)
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
  
       - name: ⚡ Checkout kernel's sourcecode and clone submodules
         run: |
-          git clone --depth=1 https://github.com/PaimonLab/kernel_xiaomi_veux/ kernel_xiaomi_veux -b 15-KSU
+          git clone --depth=1 https://github.com/PaimonLab/kernel_xiaomi_veux/ kernel_xiaomi_veux -b 15-ksu
 
       - name: 📅 Export date of build
         run: |
@@ -58,6 +58,10 @@ jobs:
           ZIP_NAME="Kernel-Paimon-${DEVICE_CODENAME}-${KERNEL_VERSION}-$(date +%d%m%Y).zip"
 
           cp out/arch/arm64/boot/Image Anykernel/
+          cp out/arch/arm64/boot/dtbo.img Anykernel
+          cp out/arch/arm64/boot/dts/vendor/xiaomi/peux.dtb Anykernel/dtb
+
+          cp ../ksu.bdf Anykernel/
 
           cd Anykernel && zip -r9 $ZIP_NAME ./*
           mv $ZIP_NAME ../../
