@@ -1,4 +1,4 @@
-name: Build KernelSU-Next for B4S4 (Bonito/Sargo)
+name: Build KernelSU-Next for B4S4 (Bonito/Sargo) by thangrankon
 
 on:
   workflow_dispatch:
