@@ -120,7 +120,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: 📤 Publish with tag associated to the kernel and the date
+       name: 📤 Publish with tag associated to the kernel and the date
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.ZIP_NAME }}
