@@ -32,7 +32,7 @@ jobs:
         run: |
           cd kernel_google_b4s4
           rm -rf KernelSU-Next
-          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b next-susfs
+          git clone --depth=1 https://github.com/KernelSU-Next/KernelSU-Next -b ce0ff7395188490934fb1b67446b6a351f22a2b4
 
       - name: 📥 Clone AnyKernel3
         run: |
