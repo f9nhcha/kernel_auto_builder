@@ -132,6 +132,12 @@ jobs:
           tag_name: Kernel-Caelum-${{ env.DEVICE_CODENAME }}-${{ env.KERNEL_VERSION }}-${{ env.DATE }}
           draft: false
           prerelease: false
+      - name: 📦 Upload build ZIP to GitHub Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+             name: kernel-build-${{ env.DEVICE_CODENAME }}
+             path: ${{ env.ZIP_NAME }}
+
 
 
 
