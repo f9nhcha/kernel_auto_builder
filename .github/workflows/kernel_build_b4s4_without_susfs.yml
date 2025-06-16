@@ -8,7 +8,9 @@ on:
   pull_request:
     branches:
       - b4s4
- 
+concurrency:
+  group: kernel-build
+  cancel-in-progress: false 
 
 jobs:
   build:
