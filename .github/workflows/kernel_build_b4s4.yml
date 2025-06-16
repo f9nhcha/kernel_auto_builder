@@ -1,13 +1,14 @@
 name: Build KernelSU-Next for B4S4 (Bonito/Sargo)
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - b4s4
   pull_request:
     branches:
       - b4s4
-  workflow_dispatch
+ 
 
 jobs:
   build:
