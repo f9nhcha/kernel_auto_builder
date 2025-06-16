@@ -128,25 +128,6 @@ jobs:
           draft: false
           prerelease: false
 
-  notification:
-     runs-on: ubuntu-22.04
-     needs: build
-     steps:
- 
-       - name: 📂 Checkout builder's sourcecode and get files
-         uses: actions/checkout@v4
 
-       - name: 📅 Export date of build
-         run: |
-          echo "DATE=$(date +%d%m%Y)" >> $GITHUB_ENV
-
-       - name: 🚀 Notify people on Discord
-         env:
-          DEVICE_CODENAME: sargo-bonito
-          KERNEL_VERSION: 4.9
-          WEBHOOK: ${{ secrets.WEBHOOK }}
-          NAME: Kernel-Caelum-sargo-bonito-4.9-${{ env.DATE }}.zip"
-         run: |
-          python3 .github/webhook.py
 
       
